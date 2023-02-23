@@ -1,3 +1,5 @@
+import json
+
 import torch
 
 
@@ -72,3 +74,23 @@ class CustomTokenizer:
         return " ".join(
             [self.reverse_vocab[i] for i in seq if i != self.vocab["<PAD>"]]
         )
+        
+    def from_json(self, path):
+        with open(path, "r", encoding="utf8") as f:
+            data = json.load(f)
+            self.vocab = data["vocab"]
+            self.reverse_vocab = data["reverse_vocab"]
+            self.index = data["index"]
+            self.vocab_size = data["vocab_size"]
+            self.max_seq_len = data["max_seq_len"]
+            
+    def to_json(self, path):
+        data = {
+            "vocab": self.vocab,
+            "reverse_vocab": self.reverse_vocab,
+            "index": self.index,
+            "vocab_size": self.vocab_size,
+            "max_seq_len": self.max_seq_len,
+        }
+        with open(path, "w", encoding="utf8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=4)
