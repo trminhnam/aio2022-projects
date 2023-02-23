@@ -17,7 +17,7 @@ The example notebook demonstrates how to train the model and generate text using
 -   [Contributing](#contributing)
 -   [License](#license)
 
-## Installation {#installation}
+## Installation
 
 To use this repository, you will need to have PyTorch installed
 with Python 3.6 or higher. All the dependencies can be installed using the following command:
@@ -26,11 +26,11 @@ with Python 3.6 or higher. All the dependencies can be installed using the follo
 pip install -r requirements.txt
 ```
 
-## Dataset {#dataset}
+## Dataset
 
 The Large Movie Review Dataset consists of 50,000 movie reviews from IMDB, labeled as positive or negative. The dataset is preprocessed and split into a training set of 25,000 reviews and a test set of 25,000 reviews. The dataset can be downloaded from the [IMDB website](http://ai.stanford.edu/~amaas/data/sentiment/).
 
-## Folder Structure {#folder-structure}
+## Folder Structure
 
 The repository contains the following files and folders:
 
@@ -57,24 +57,24 @@ The repository contains the following files and folders:
     └── utils.py
 ```
 
-## Model {#model}
+## Model
 
 The text generation model is based on a transformer decoder architecture with multi-head attention and positional encoding. The model is implemented using PyTorch and trained on the preprocessed dataset using Adam optimizer with backpropagation. The model is designed to generate text one word at a time, conditioned on a given starting word or sequence of words.
 
-### Model Architecture {#model-architecture}
+### Model Architecture
 
 The model consists of a learned embedding layer to map the input words to a continuous vector space, followed by multiple transformer decoder layers to capture long-term dependencies and generate output words. The decoder layers include multi-head attention, which allows the model to attend to different parts of the input sequence, and positional encoding, which encodes the position of each word in the input sequence. The model is trained to minimize the cross-entropy loss between the predicted and actual output words.
 
-### Model Evaluation {#model-evaluation}
+### Model Evaluation
 
-### Demo {#demo}
+### Demo
 
-## References {#references}
+## References
 
 This repository is built based on the following resources:
 
 [1] Dinh-Vinh Nguyen, AI VIET NAM. (2022). Transfer Learning (Text). AIO2022.
 
-## License {#license}
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
