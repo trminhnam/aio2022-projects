@@ -1,5 +1,7 @@
 # Text Generation with PyTorch on Large Movie Review Dataset
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1IoM2-M1Hjv1N4OVTzZHvIh_WfMe1HRjZ?usp=sharing)
+
 This repository contains a deep learning model for text generation using PyTorch on the Large Movie Review Dataset. The model is trained to generate movie reviews in a language that mimics the style and sentiment of the reviews in the original dataset.
 
 The example notebook demonstrates how to train the model and generate text using the decoder-only architecture. The model can be trained on a GPU using the `train.py` script. The `run.py` script can be used to generate text using a pre-trained model.
