@@ -75,7 +75,7 @@ The model consists of a learned embedding layer to map the input words to a cont
 
 This repository is built based on the following resources:
 
-[1] Dinh-Vinh Nguyen, AI VIET NAM. (2022). Transfer Learning (Text). AIO2022.
+[1] Quang-Vinh Dinh, AI VIET NAM. (2022). Transfer Learning (Text). AIO2022.
 
 ## License
 
