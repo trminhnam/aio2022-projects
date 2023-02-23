@@ -13,21 +13,8 @@ from model import GeneratorModel
 from tokenizer import CustomTokenizer
 from train import train
 from utils import generate, standardization, colorstr
+from config import *
 
-VOCAB_SIZE = 20000
-MAX_SEQ_LEN = 80
-
-EPOCHS = 30
-BATCH_SIZE = 16
-LEARNING_RATE = 3e-5
-
-EMBEDDING_DIM = 256
-N_HEADS = 8
-FF_DIM = 256
-N_LAYERS = 1
-DROP_OUT = 0.1
-
-DATASET_DIR = "aclImdb"
 TRAIN_DIR = os.path.join(DATASET_DIR, "train")
 TEST_DIR = os.path.join(DATASET_DIR, "test")
 CLASSES = ["neg", "pos"]
