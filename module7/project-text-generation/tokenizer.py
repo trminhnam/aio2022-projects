@@ -21,10 +21,8 @@ class CustomTokenizer:
         for k, v in self.vocab.items():
             self.reverse_vocab[v] = k
 
-        self.vocab_size = len(self.vocab)
-
     def fit_text(self, text):
-        for word in text.split():
+        for word in text.split(' '):
             if word not in self.vocab:
                 self.vocab[word] = self.index
                 self.reverse_vocab[self.index] = word
