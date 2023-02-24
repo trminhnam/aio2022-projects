@@ -32,8 +32,8 @@ class CustomTokenizer:
                 if self.index >= self.vocab_size:
                     break
 
-    def fit_corpus(self, text):
-        for text in text:
+    def fit_corpus(self, corpus):
+        for text in corpus:
             self.fit_text(text)
 
     def encode(self, text, add_sos=False, get_mask=False):
