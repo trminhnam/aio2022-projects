@@ -45,6 +45,9 @@ The repository contains the following files and folders:
     |   └── train/
     |       ├── neg/
     |       └── pos/
+    ├── models/
+    |   ├── model.pt
+    |   └── tokenizer.json
     ├── .gitattributes
     ├── .gitignore
     ├── dataset.py
@@ -76,6 +79,8 @@ The model consists of a learned embedding layer to map the input words to a cont
 This repository is built based on the following resources:
 
 [1] Quang-Vinh Dinh, AI VIET NAM. (2022). Transfer Learning (Text). AIO2022.
+
+[2] PyTorch tutorial, [Language Modeling with nn.Transformer and TorchText](https://pytorch.org/tutorials/beginner/transformer_tutorial.html).
 
 ## License
 
