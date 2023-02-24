@@ -162,3 +162,15 @@ def colorstr(*input):
         'bold': '\033[1m',
         'underline': '\033[4m'}
     return ''.join(colors[x] for x in args) + f'{string}' + colors['end']
+
+def generate_square_subsequent_mask(sz: int) -> torch.Tensor:
+    """Generates an upper-triangular matrix of -inf, with zeros on diag.
+    Reference: https://pytorch.org/tutorials/beginner/transformer_tutorial.html
+
+    Args:
+        sz (int): the size of the mask
+
+    Returns:
+        torch.Tensor: the mask tensor
+    """
+    return torch.triu(torch.ones(sz, sz) * float('-inf'), diagonal=1)
