@@ -9,7 +9,7 @@ DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # load tokenizer
 tokenizer = CustomTokenizer(VOCAB_SIZE, MAX_SEQ_LEN)
-tokenizer.from_json(TOKENIZER_SAVE_PATH)
+tokenizer.from_json("model/tokenizer.json")
 
 model = GeneratorModel(
     vocab_size=tokenizer.vocab_size,
@@ -20,13 +20,14 @@ model = GeneratorModel(
     n_layers=N_LAYERS,
     dropout=DROP_OUT,
 )
-model.load_state_dict(PRETRAINED_PATH)
+model.load_state_dict(torch.load("model/model.pt", map_location=DEVICE))
 model = model.to(DEVICE)
 
 # generate text
 input_prompt = "I love"
 output_prompt = generate(
-    model, tokenizer, input_prompt, max_seq_len=MAX_SEQ_LEN, device=DEVICE
+    input_prompt, model, tokenizer, 
+    max_generated_tokens=30, max_seq_len=MAX_SEQ_LEN
 )
 
 print(colorstr("blue", "bold", "Input prompt:"), input_prompt)

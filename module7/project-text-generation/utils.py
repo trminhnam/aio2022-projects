@@ -75,12 +75,15 @@ def sample_from(logits, top_k=10):
     return np.random.choice(indices, p=preds)
 
 
-def generate(model, tokenizer, start_tokens, max_generated_tokens, max_seq_len):
+def generate(start_prompt, model, tokenizer, max_generated_tokens, max_seq_len):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    model = model.to(device)
+    
+    start_tokens = tokenizer.encode(start_prompt)[:len(start_prompt.split())]
     start_tokens = [_ for _ in start_tokens]
     num_tokens_generated_local = 0
     tokens_generated = []
-    max_generated_tokens
+    max_generated_tokens 
     while num_tokens_generated_local <= max_generated_tokens:
         pad_len = max_seq_len - len(start_tokens)
         sample_index = len(start_tokens) - 1
@@ -92,16 +95,16 @@ def generate(model, tokenizer, start_tokens, max_generated_tokens, max_seq_len):
         with torch.no_grad():
             y = model(x)
             y = y.cpu()
-
+            
         sample_token = sample_from(y[0][sample_index])
-
-        if sample_token == tokenizer["<EOS>"]:
+        
+        if sample_token == tokenizer['<EOS>']:
             break
-
+        
         tokens_generated.append(sample_token)
         start_tokens.append(sample_token)
         num_tokens_generated_local = len(tokens_generated)
-
+        
     txt = tokenizer.decode(tokens_generated)
     return txt
 
