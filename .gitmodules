@@ -1,0 +1,3 @@
+[submodule "module6/project-image-segmentation"]
+	path = module6/project-image-segmentation
+	url = https://github.com/trminhnam/project-image-segmentation
