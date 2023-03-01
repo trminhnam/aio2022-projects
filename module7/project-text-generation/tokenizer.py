@@ -81,6 +81,8 @@ class CustomTokenizer:
             self.index = data["index"]
             self.vocab_size = data["vocab_size"]
             self.max_seq_len = data["max_seq_len"]
+            print(type(self.vocab))
+            print(type(self.reverse_vocab))
             
     def to_json(self, path):
         data = {
