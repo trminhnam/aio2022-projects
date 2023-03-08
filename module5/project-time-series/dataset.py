@@ -1,7 +1,8 @@
+import numpy as np
 import torch
 import torch.nn as nn
-import numpy as np
 from torch.utils.data import Dataset
+
 from utils import sliding_window
 
 
@@ -22,6 +23,7 @@ class TelsaStockDataset(Dataset):
 if __name__ == "__main__":
     import pandas as pd
     from torch.utils.data import DataLoader
+
     from utils import sliding_window
 
     df = pd.read_csv("./data/tesla-stock-price.csv")

@@ -1,6 +1,6 @@
-import torch
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
+import torch
 
 
 def sliding_window(data, window_size, window_step):
