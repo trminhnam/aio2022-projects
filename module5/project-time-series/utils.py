@@ -1,8 +1,9 @@
+import base64
+import os
+
 import matplotlib.pyplot as plt
 import numpy as np
 import torch
-import base64
-import os
 
 
 def sliding_window(data, window_size, window_step):

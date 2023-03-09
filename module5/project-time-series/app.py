@@ -1,24 +1,26 @@
+import os
+import sys
+
+# insert current directory to sys.path
+sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
+
+
+import copy
+
+import matplotlib.pyplot as plt
 import numpy as np
-import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-
-import torch
-import numpy as np
-import pandas as pd
-from sklearn.model_selection import train_test_split
-import matplotlib.pyplot as plt
-
-import copy
+import streamlit as st
 import torch
 import torch.nn as nn
+from sklearn.model_selection import train_test_split
 from torch.utils.data import DataLoader
 
-from utils import sliding_window, train_fn, eval_fn, get_binary_file_downloader_html
 from dataset import TelsaStockDataset
 from model import ForecastModel
-
+from utils import eval_fn, sliding_window, train_fn
 
 st.set_page_config(
     layout="wide",
@@ -30,7 +32,10 @@ st.set_page_config(
 # @st.cache(allow_output_mutation=True)
 def load_dataset():
     # Load the dataset
-    df = pd.read_csv("data/tesla-stock-price.csv", parse_dates=["date"])
+    df = pd.read_csv(
+        os.path.join(os.path.dirname(__file__), "data", "tesla-stock-price.csv"),
+        parse_dates=["date"],
+    )
     # drop second row
     df.drop(df.index[0], inplace=True)
     return df
