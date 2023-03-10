@@ -38,11 +38,27 @@ def load_dataset():
     return df
 
 
-# Define a function for the Introduction page
 def introduction():
-    st.title("Introduction")
+    st.title("📊 Introduction")
+    st.write("👋 Welcome to the Tesla stock analysis app!")
     st.write(
-        "This app allows you to explore the Tesla stock dataset, perform exploratory data analysis (EDA), and make predictions with a Long Short-Term Memory (LSTM) model. The dataset contains daily stock prices for Tesla, and includes the following columns: date, close, volume, open, high, and low. The EDA page includes several visualizations to help you understand the dataset, and the Stock Prediction page uses an LSTM model to predict the closing price of the stock for a given date range."
+        "🔍 This app allows you to explore the Tesla stock dataset, perform exploratory data analysis (EDA), and make predictions with a Long Short-Term Memory (LSTM) model."
+    )
+    st.write(
+        "📈 The dataset contains daily stock prices for Tesla, and includes the following columns: date, close, volume, open, high, and low."
+    )
+    st.write("📑 The other pages in this app include:")
+    st.write(
+        "  - 📊 EDA Page: This page includes several visualizations to help you understand the dataset."
+    )
+    st.write(
+        "  - 💰 Stock Prediction Page: This page uses an LSTM model to predict the closing price of the stock for a given date range."
+    )
+    st.write(
+        "  - 🧑‍💻 About Page: This page provides information about the app and its creators."
+    )
+    st.write(
+        "  - 📚 Reference Page: This page lists the references used in building this app."
     )
 
 
@@ -50,7 +66,7 @@ def introduction():
 def eda():
     df = load_dataset()
     # Set the title of the app
-    st.title("Simple Tesla Stock Data EDA")
+    st.title("📊 Simple Tesla Stock Data EDA")
 
     st.subheader("Candlestick Chart")
     fig = go.Figure(
@@ -99,7 +115,7 @@ def eda():
 
 # Define a function for the Stock Prediction page
 def stock_prediction():
-    st.title("Stock Prediction with LSTM Model")
+    st.title("💰 Stock Prediction with LSTM Model")
     st.write(
         "This page uses an LSTM model to predict the closing price of the stock for a given date range."
     )
@@ -258,18 +274,6 @@ def stock_prediction():
         )
         st.plotly_chart(fig)
 
-        # # Save the model and download it
-        # st.subheader("Save and Download Model")
-        # model_path = "model.pt"
-        # torch.save(model.state_dict(), model_path)
-        # st.success("Model saved to disk.")
-        # st.download_button(
-        #     label="Download Model",
-        #     data=open(model_path, "rb"),
-        #     file_name="model.pt",
-        #     mime="application/octet-stream",
-        # )
-
         # Make predictions
         st.subheader("Evaluation and visualization")
         model.eval()
@@ -314,16 +318,87 @@ def stock_prediction():
         fig.update_layout(title="Stock Prices", xaxis_title="Time", yaxis_title="Price")
         st.plotly_chart(fig)
 
+        # Save the model and download it
+        st.subheader("Save and Download Model")
+        model_path = "model.pt"
+        torch.save(model.state_dict(), model_path)
+        st.success("Model saved to disk.")
+        st.download_button(
+            label="Download Model",
+            data=open(model_path, "rb"),
+            file_name="model.pt",
+            mime="application/octet-stream",
+        )
+
 
 # Define a function for the About page
 def about():
-    st.title("About")
-    st.write("This is the about page.")
+    st.title("🧑‍💻 About")
+    st.write(
+        "This Streamlit app allows you to explore stock prices and make predictions using an LSTM model."
+    )
+
+    st.header("Author")
+    st.write(
+        "This app was developed by John Doe. You can contact the author at trminhnam20082002@gmail.com."
+    )
+
+    st.header("Data Sources")
+    st.markdown(
+        "The stock price data was sourced from [Yahoo Finance](https://finance.yahoo.com/quote/TSLA)."
+    )
+
+    st.header("Acknowledgments")
+    st.write(
+        "The author would like to thank Jane Smith for her invaluable feedback and support during the development of this app."
+    )
+
+    st.header("License")
+    st.write(
+        "This app is licensed under the MIT License. See LICENSE.txt for more information."
+    )
+
+
+def references():
+    st.title("📚 References")
+    st.header("References for Stock Prediction Model")
+
+    st.subheader("1. 'Project for time-series data' by AI VIET NAM, et al.")
+    st.write(
+        "This organization provides a tutorial on how to build a stock price prediction model using LSTM in the AIO2022 course."
+    )
+    st.write("Link: https://www.facebook.com/aivietnam.edu.vn")
+
+    st.subheader(
+        "2. 'PyTorch LSTMs for time series forecasting of Indian Stocks' by Vinayak Nayak"
+    )
+    st.write(
+        "This blog post describes how to build a stock price prediction model using LSTM, RNN and CNN-sliding window model."
+    )
+    st.write(
+        "Link: https://medium.com/analytics-vidhya/pytorch-lstms-for-time-series-forecasting-of-indian-stocks-8a49157da8b9#b052"
+    )
+
+    st.header("References for Streamlit")
+
+    st.subheader("1. Streamlit Documentation")
+    st.write(
+        "The official documentation for Streamlit provides detailed information about how to use the library and build Streamlit apps."
+    )
+    st.write("Link: https://docs.streamlit.io/")
+
+    st.subheader("2. Streamlit Community")
+    st.write(
+        "The Streamlit community includes a forum and a GitHub repository with examples and resources for building Streamlit apps."
+    )
+    st.write(
+        "Link: https://discuss.streamlit.io/ and https://github.com/streamlit/streamlit/"
+    )
 
 
 # Create the sidebar
 st.sidebar.title("Menu")
-pages = ["Introduction", "EDA", "Stock Prediction", "About"]
+pages = ["Introduction", "EDA", "Stock Prediction", "About", "References"]
 selected_page = st.sidebar.radio("Go to", pages)
 
 # Show the appropriate page based on the selection
@@ -335,3 +410,5 @@ elif selected_page == "Stock Prediction":
     stock_prediction()
 elif selected_page == "About":
     about()
+elif selected_page == "References":
+    references()
